@@ -43,3 +43,6 @@ _targets/
 
 # renv via capsule
 renv/
+
+# output
+results
