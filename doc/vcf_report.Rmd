@@ -1,0 +1,45 @@
+---
+title: "VCF report"
+author: "Joel Nitta"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r load-targets, include=FALSE}
+tar_load(filtered_variants_tbl)
+```
+
+## Methods
+
+The [Data Carpentry Variant Calling Workflow](https://datacarpentry.org/wrangling-genomics/04-variant_calling/index.html) was carried out on some sample *E. coli* data. Briefly, this consisted of downloading the reads and reference genome, mapping the reads to the reference genome with `BWA-MEM`, calling variants with `bcftools mpileup`, and filtering variants with `bcftools filter`.
+
+## Results
+
+This table shows how many variants were detected in each sample, and how many of those passed the quality control filter.
+
+```{r summary}
+filtered_variants_tbl %>%
+  group_by(file) %>%
+  count(filter) %>%
+  knitr::kable()
+```
+
+```{r top-var}
+most_vars <- filtered_variants_tbl %>%
+  filter(filter == "PASS") %>%
+  group_by(file) %>%
+  count() %>%
+  ungroup() %>%
+  slice_max(order_by = n, n = 1) %>%
+  pull(file) %>%
+  str_match("([^\\.]+)\\.") %>%
+  magrittr::extract(, 2)
+```
+
+All the variants passed the filter on default settings. The number of variants differs by sample: `r most_vars` had the most.
