@@ -28,3 +28,7 @@ Rscript -e 'renv::restore()'
 ## Running the analysis
 
 Activate the `vcf-example-env` environment, then run `Rscript -e 'targets::tar_make()'`.
+
+## License
+
+[MIT](LICENSE)
