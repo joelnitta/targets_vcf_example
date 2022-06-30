@@ -2,7 +2,7 @@
 source("packages.R")
 
 # Load functions
-lapply(list.files("R/", full.names = TRUE), source)
+source("R/functions.R")
 
 # Set parallel back-end
 plan(callr)
