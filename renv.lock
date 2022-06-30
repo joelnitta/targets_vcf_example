@@ -127,13 +127,21 @@
     "babelwhale": {
       "Package": "babelwhale",
       "Version": "1.0.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "7c16f2969dc63a7e70dd9c7cf9fb4036",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "joelnitta",
+      "RemoteRepo": "babelwhale",
+      "RemoteRef": "jnfeat",
+      "RemoteSha": "db9e5aa1e59c3f89a063961c3ba17f33c2121400",
+      "Hash": "6d2db65f48ed53a019ad2231d0bfce0f",
       "Requirements": [
         "crayon",
+        "digest",
         "dplyr",
         "dynutils",
+        "fs",
+        "glue",
         "processx",
         "purrr"
       ]
