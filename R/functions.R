@@ -31,10 +31,10 @@ download_and_untar <- function(url, dir_out) {
     tarfile = temp_file,
     exdir = dir_out
   )
-  
+
   if (fs::file_exists(temp_file)) fs::file_delete(temp_file)
-  
-  list.files(dir_out, full.names = TRUE, recursive = TRUE) |> 
+
+  list.files(dir_out, full.names = TRUE, recursive = TRUE) %>%
     fs::path_norm()
 
 }
@@ -74,13 +74,13 @@ bwa_index <- function(fasta_in, prefix, wd) {
 bwa_mem <- function(f_read, r_read, ref_files, out_dir) {
 
   # Extract ref index ref_prefix (part of file name before extension)
-  ref_prefix <- fs::path_file(ref_files) |> 
-    fs::path_ext_remove() |>
+  ref_prefix <- fs::path_file(ref_files) %>%
+    fs::path_ext_remove() %>%
     unique()
   assertthat::assert_that(length(ref_prefix) == 1)
 
   # Extract path to ref index
-  ref_dir <- fs::path_dir(ref_files) |> 
+  ref_dir <- fs::path_dir(ref_files) %>%
     unique()
   assertthat::assert_that(length(ref_dir) == 1)
 
