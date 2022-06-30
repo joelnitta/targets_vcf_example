@@ -4,4 +4,4 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - r-renv=0.15.*
+  - r-renv=0.15.5
