@@ -118,13 +118,13 @@ bwa_mem <- function(f_read, r_read, ref_files, out_dir) {
 #'
 #' @param sam Input SAM file
 #' @param out_dir Directory to write output
-#' 
+#'
 #' @return Path to output BAM file: file extension will be changed to '.bam'
-#' 
+#'
 sam_to_bam <- function(sam, out_dir) {
 
   # Format output file
-  out_file <- 
+  out_file <-
     fs::path_file(sam) %>%
     fs::path_ext_remove() %>%
     fs::path_ext_set(".bam") %>%
@@ -151,11 +151,11 @@ sam_to_bam <- function(sam, out_dir) {
 #' @param out_dir Directory to write sorted BAM output
 #' @return Path to sorted BAM output. Will be named by replacing
 #' ".bam" part of original file with ".sorted.bam"
-#' 
+#'
 sort_bam <- function(bam, out_dir = "results/bam/sorted") {
 
   # Format output file
-  out_file <- 
+  out_file <-
     fs::path_file(bam) %>%
     fs::path_ext_remove() %>%
     fs::path_ext_set(".sorted.bam") %>%
@@ -175,7 +175,7 @@ sort_bam <- function(bam, out_dir = "results/bam/sorted") {
 }
 
 #' Run multi-way pileup producing genotype likelihoods
-#' 
+#'
 #' @param ref Reference FASTA
 #' @param align Input alignment in BAM format, sorted
 #' @param out_file Path to write output
@@ -203,7 +203,7 @@ bcftools_mpileup <- function(ref, align, out_file) {
 #' @param out_file Path to write output
 #' @param other_args Other arguments passed to `bcftools call`
 #' @return Path to output
-#' 
+#'
 bcftools_call <- function(bcf, out_file, other_args = NULL) {
 
   run_auto_mount(
@@ -245,12 +245,12 @@ bcftools_filter <- function(vcf, other_args = NULL, out_file) {
 }
 
 #' Load a VCF file into R as a tibble
-#' 
+#'
 #' @param vcf Path to VCF file
-#' 
+#'
 #' @return Tibble. Includes standard VCF columns plus one column called 'file',
 #' with the vcf filename
-#' 
+#'
 load_vcf <- function(vcf) {
 
   data <-
@@ -270,15 +270,15 @@ load_vcf <- function(vcf) {
 get_prefix <- function(path) {
   path %>%
     fs::path_file() %>%
-    str_match("^([^\\.]+)\\.") %>% 
-    magrittr::extract(,2)
+    str_match("^([^\\.]+)\\.") %>%
+    magrittr::extract(, 2)
 }
 
 #' Create a new file name based on another file name
-#' 
+#'
 #' The directory and extension will be changed to create
 #' the new file name
-#' 
+#'
 #' @param path Filename
 #' @param dir Directory for new filename
 #' @param ext Extension for new filename
